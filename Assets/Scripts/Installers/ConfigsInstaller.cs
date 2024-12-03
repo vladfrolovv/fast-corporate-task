@@ -1,4 +1,5 @@
-﻿using Players;
+﻿using Hazards;
+using Players;
 using UnityEngine;
 using Zenject;
 namespace Installers
@@ -8,10 +9,12 @@ namespace Installers
     {
 
         [SerializeField] private PlayerConfig _playerConfig;
+        [SerializeField] private AcidCloudConfig _acidCloudConfig;
 
         public override void InstallBindings()
         {
             Container.BindInstance(_playerConfig);
+            Container.BindInstance(_acidCloudConfig);
         }
         
     }

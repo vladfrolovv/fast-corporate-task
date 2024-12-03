@@ -7,6 +7,7 @@ namespace Hazards
 
         [SerializeField] private float _raindropsDelay;
 
+        public float RaindropsDelay => _raindropsDelay;
 
     }
 }

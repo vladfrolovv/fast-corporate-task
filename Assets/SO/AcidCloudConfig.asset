@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caf2744016a8442ab534dad5d5fbf73f, type: 3}
-  m_Name: ConfigsInstaller
+  m_Script: {fileID: 11500000, guid: 995843357a404831a31e9d0d4dbef691, type: 3}
+  m_Name: AcidCloudConfig
   m_EditorClassIdentifier: 
-  _playerConfig: {fileID: 11400000, guid: 9792d76ac4b910f42ace3ac243461789, type: 2}
-  _acidCloudConfig: {fileID: 11400000, guid: 6971f2d3d4fb64c45bec927839c20101, type: 2}
+  _raindropsDelay: 0.1
