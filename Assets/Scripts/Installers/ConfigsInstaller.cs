@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Players;
+using UnityEngine;
 using Zenject;
 namespace Installers
 {
@@ -6,8 +7,11 @@ namespace Installers
     public class ConfigsInstaller : ScriptableObjectInstaller
     {
 
+        [SerializeField] private PlayerConfig _playerConfig;
+
         public override void InstallBindings()
         {
+            Container.BindInstance(_playerConfig);
         }
         
     }
