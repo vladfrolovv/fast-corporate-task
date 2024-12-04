@@ -1,4 +1,5 @@
 ﻿using System;
+using Players;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -9,6 +10,10 @@ namespace Hazards
 
         private AcidDropInfo _info;
         private IMemoryPool _pool;
+
+        private CompositeDisposable _compositeDisposable = new();
+
+        [SerializeField] private Collider _collider;
 
         public Vector3 Position
         {
@@ -23,7 +28,8 @@ namespace Hazards
 
             Observable.EveryUpdate().Subscribe(delegate
             {
-            });
+                Position += Vector3.down * 9.8f * Time.deltaTime;
+            }).AddTo(_compositeDisposable);
         }
 
         public void OnDespawned()
@@ -32,6 +38,13 @@ namespace Hazards
 
         public void Dispose()
         {
+            _pool?.Despawn(this);
+
+            _pool = null;
+            _info = null;
+            gameObject.SetActive(false);
+
+            _compositeDisposable?.Dispose();
         }
 
     }
