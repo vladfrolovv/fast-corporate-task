@@ -5,5 +5,7 @@
 
         public const float WORLD_ROTATION = 45f;
 
+        public const float GRAVITY = 9.81f;
+
     }
 }

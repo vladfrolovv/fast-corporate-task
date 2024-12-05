@@ -6,8 +6,10 @@ namespace Hazards
     {
 
         [SerializeField] private float _raindropsDelay;
+        [SerializeField] private float _raindropSpeedMultiplier;
 
         public float RaindropsDelay => _raindropsDelay;
+        public float RaindropSpeedMultiplier => _raindropSpeedMultiplier;
 
     }
 }

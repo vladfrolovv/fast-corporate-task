@@ -868,6 +868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _acidDropPrefab: {fileID: 2984746707996345986, guid: 0f66e00b8c0c3a74bb9c2266c64c8bb9, type: 3}
+  _targetPrefab: {fileID: 6864897300762915152, guid: a9d047edcc764164cba07e42574b83aa, type: 3}
 --- !u!114 &1048087028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,7 +968,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -992,7 +993,7 @@ Transform:
   m_GameObject: {fileID: 1471334126}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

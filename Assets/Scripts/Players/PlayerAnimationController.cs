@@ -14,7 +14,6 @@ namespace Players
 
         public void SetMovingSpeed(float speed)
         {
-            Debug.Log($"Speed: {speed}");
             _animator.SetBool(_isWalkingHash, speed > _movingSpeedThreshold && speed < _runningSpeedThreshold);
             _animator.SetBool(_isRunningHash, speed > _runningSpeedThreshold);
         }

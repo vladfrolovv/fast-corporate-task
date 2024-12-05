@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 995843357a404831a31e9d0d4dbef691, type: 3}
   m_Name: AcidCloudConfig
   m_EditorClassIdentifier: 
-  _raindropsDelay: 0.1
+  _raindropsDelay: 0.5
+  _raindropSpeedMultiplier: 1
