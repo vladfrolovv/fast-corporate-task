@@ -5,6 +5,10 @@ namespace Players
     public class PlayerView : MonoBehaviour
     {
 
+        [SerializeField] private Collider _collider;
+
+        public Collider Collider => _collider;
+
         public Vector3 Position
         {
             get => transform.position;

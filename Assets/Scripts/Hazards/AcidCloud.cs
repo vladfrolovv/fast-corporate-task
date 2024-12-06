@@ -10,17 +10,17 @@ namespace Hazards
 
         private readonly AcidDropsFactory _acidDropsFactory;
         private readonly AcidCloudConfig _acidCloudConfig;
-        private readonly AcidZone _acidZone;
-        private readonly TargetsFactory _targetsFactory;
+        private readonly AcidCloudZone _acidCloudZone;
+        private readonly ShadowsFactory _shadowsFactory;
 
         private readonly CompositeDisposable _compositeDisposable = new();
 
-        public AcidCloud(AcidCloudConfig acidCloudConfig, AcidZone acidZone, AcidDropsFactory acidDropsFactory, TargetsFactory targetsFactory)
+        public AcidCloud(AcidCloudConfig acidCloudConfig, AcidCloudZone acidCloudZone, AcidDropsFactory acidDropsFactory, ShadowsFactory shadowsFactory)
         {
-            _acidZone = acidZone;
+            _acidCloudZone = acidCloudZone;
             _acidCloudConfig = acidCloudConfig;
             _acidDropsFactory = acidDropsFactory;
-            _targetsFactory = targetsFactory;
+            _shadowsFactory = shadowsFactory;
 
             Observable
                 .Interval(TimeSpan.FromSeconds(acidCloudConfig.RaindropsDelay))
@@ -32,17 +32,17 @@ namespace Hazards
 
         private void CreteDrop()
         {
-            Vector3 startPoint = _acidZone.GetPointInZone();
-            Vector3 destinationPoint = new (startPoint.x, 0f, startPoint.z);
+            Vector3 startPoint = _acidCloudZone.GetPointInZone();
+            Vector3 endPoint = new (startPoint.x, 0f, startPoint.z);
+
             AcidDrop drop = _acidDropsFactory.Create(new AcidDropInfo(
-                destinationPoint,
+                endPoint,
                 _acidCloudConfig.RaindropSpeedMultiplier
                 ));
-
-            Target target = _targetsFactory.Create(new TargetInfo());
-            target.transform.position = destinationPoint + Vector3.up * .01f;
+            Shadow shadow = _shadowsFactory.Create(new ShadowInfo(drop, startPoint));
 
             drop.transform.position = startPoint;
+            shadow.transform.position = endPoint;
         }
 
         public void Dispose()

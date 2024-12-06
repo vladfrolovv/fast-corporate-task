@@ -2,7 +2,7 @@
 namespace Hazards
 {
     [RequireComponent(typeof(BoxCollider))]
-    public class AcidZone : MonoBehaviour
+    public class AcidCloudZone : MonoBehaviour
     {
 
         private BoxCollider _collider;

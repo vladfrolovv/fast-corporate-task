@@ -1,7 +1,9 @@
 ﻿using System;
 using DataProxies;
+using Hazards.AcidDrops;
 using Inputs;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 namespace Players
 {
@@ -27,6 +29,14 @@ namespace Players
                 playerView.Rotation = _movementVector != Vector3.zero ?
                     Quaternion.LookRotation(_movementVector) :
                     playerView.Rotation;
+            }).AddTo(_compositeDisposable);
+
+            playerView.Collider.OnTriggerEnterAsObservable().Subscribe(delegate(Collider collider)
+            {
+                if (collider.TryGetComponent(out AcidDrop acidDrop))
+                {
+                    acidDrop.OnHit();
+                }
             }).AddTo(_compositeDisposable);
         }
 
