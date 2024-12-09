@@ -1,4 +1,5 @@
 ﻿using Hazards;
+using Menu.ColorPicker;
 using Players;
 using UnityEngine;
 using Zenject;
@@ -10,11 +11,13 @@ namespace Installers
 
         [SerializeField] private PlayerConfig _playerConfig;
         [SerializeField] private AcidCloudConfig _acidCloudConfig;
+        [SerializeField] private ColorsConfig _colorsConfig;
 
         public override void InstallBindings()
         {
             Container.BindInstance(_playerConfig);
             Container.BindInstance(_acidCloudConfig);
+            Container.BindInstance(_colorsConfig);
         }
         
     }
