@@ -10,8 +10,11 @@ namespace Menu.ColorPicker
 
         private Transform _standardParent;
 
+        public Color Color { get; private set; }
+
         public void InitColor(Color color)
         {
+            Color = color;
             _view.color = color;
         }
 
@@ -21,6 +24,8 @@ namespace Menu.ColorPicker
 
             _view.transform.SetParent(transform.root);
             _view.transform.SetAsLastSibling();
+
+            _view.raycastTarget = false;
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -37,6 +42,7 @@ namespace Menu.ColorPicker
         {
             _view.transform.SetParent(_standardParent);
             _view.transform.localPosition = Vector3.zero;
+            _view.raycastTarget = true;
         }
 
     }

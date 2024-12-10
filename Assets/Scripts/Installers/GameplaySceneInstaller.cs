@@ -1,6 +1,8 @@
-﻿using Hazards;
+﻿using Gameplay;
+using Hazards;
 using Hazards.AcidDrops;
 using Hazards.Particles;
+using Hazards.Puddles;
 using Hazards.Targets;
 using Inputs;
 using Players;
@@ -14,6 +16,7 @@ namespace Installers
         [SerializeField] private AcidDrop _acidDropPrefab;
         [SerializeField] private AcidParticles _acidParticlesPrefab;
         [SerializeField] private Shadow _shadowPrefab;
+        [SerializeField] private Puddle _puddlePrefab;
 
         public override void InstallBindings()
         {
@@ -24,6 +27,8 @@ namespace Installers
             Container.Bind<AcidCloudZone>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesAndSelfTo<AcidCloud>().AsSingle().NonLazy();
 
+            Container.Bind<Countdown>().FromComponentInHierarchy().AsSingle();
+
             Container.Bind<BaseInputProvider>().FromComponentInHierarchy().AsSingle();
 
             InstallPrefabs();
@@ -33,7 +38,7 @@ namespace Installers
         {
             Container.BindFactory<AcidDropInfo, AcidDrop, AcidDropsFactory>()
                 .FromPoolableMemoryPool<AcidDropInfo, AcidDrop, AcidDropsPool>(x =>
-                    x.WithInitialSize(32).FromComponentInNewPrefab(_acidDropPrefab));
+                    x.WithInitialSize(64).FromComponentInNewPrefab(_acidDropPrefab));
 
             Container.BindFactory<ShadowInfo, Shadow, ShadowsFactory>()
                 .FromPoolableMemoryPool<ShadowInfo, Shadow, TargetsPool>(x =>
@@ -42,6 +47,10 @@ namespace Installers
             Container.BindFactory<AcidParticlesInfo, AcidParticles, AcidParticlesFactory>()
                 .FromPoolableMemoryPool<AcidParticlesInfo, AcidParticles, AcidParticlesPool>(x =>
                     x.WithInitialSize(64).FromComponentInNewPrefab(_acidParticlesPrefab));
+
+            Container.BindFactory<PuddleInfo, Puddle, PuddlesFactory>()
+                .FromPoolableMemoryPool<PuddleInfo, Puddle, PuddlesPool>(x =>
+                    x.WithInitialSize(16).FromComponentInNewPrefab(_puddlePrefab));
         }
 
         private class AcidDropsPool : MonoPoolableMemoryPool<AcidDropInfo, IMemoryPool, AcidDrop>
@@ -52,7 +61,11 @@ namespace Installers
         {
         }
 
-        private class AcidParticlesPool : MonoMemoryPool<AcidParticlesInfo, IMemoryPool, AcidParticles>
+        private class AcidParticlesPool : MonoPoolableMemoryPool<AcidParticlesInfo, IMemoryPool, AcidParticles>
+        {
+        }
+
+        private class PuddlesPool : MonoPoolableMemoryPool<PuddleInfo, IMemoryPool, Puddle>
         {
         }
 

@@ -12,12 +12,14 @@ namespace Installers
         [SerializeField] private PlayerConfig _playerConfig;
         [SerializeField] private AcidCloudConfig _acidCloudConfig;
         [SerializeField] private ColorsConfig _colorsConfig;
+        [SerializeField] private PuddlesConfig _puddlesConfig;
 
         public override void InstallBindings()
         {
             Container.BindInstance(_playerConfig);
             Container.BindInstance(_acidCloudConfig);
             Container.BindInstance(_colorsConfig);
+            Container.BindInstance(_puddlesConfig);
         }
         
     }

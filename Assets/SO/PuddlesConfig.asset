@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 995843357a404831a31e9d0d4dbef691, type: 3}
-  m_Name: AcidCloudConfig
+  m_Script: {fileID: 11500000, guid: b5c7157f85fe469e91dcc69a37538164, type: 3}
+  m_Name: PuddlesConfig
   m_EditorClassIdentifier: 
-  _raindropsDelay: 0.05
-  _raindropSpeedMultiplier: 1
+  _timeToLive: 5
+  _spawnRate: 25
+  _damageTick: 1
+  _speedMultiplier: 0.75

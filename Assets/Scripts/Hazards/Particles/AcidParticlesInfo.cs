@@ -2,8 +2,13 @@
 {
     public class AcidParticlesInfo
     {
-        public AcidParticlesInfo()
+        
+        public AcidParticlesInfo(ParticlesType type)
         {
+            Type = type;
         }
+
+        public ParticlesType Type { get; }
+
     }
 }

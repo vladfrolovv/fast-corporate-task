@@ -6,7 +6,7 @@ namespace Menu.ColorPicker
     public class ColorsConfig : ScriptableObject
     {
 
-        [SerializeField] private List<Color> _colors = new();
+        [SerializeField] private List<Color> _colors = new ();
 
         public IReadOnlyList<Color> Colors => _colors;
 

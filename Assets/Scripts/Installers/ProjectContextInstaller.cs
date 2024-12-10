@@ -1,4 +1,5 @@
-﻿using Transitions;
+﻿using DataProxies;
+using Transitions;
 using Zenject;
 namespace Installers
 {
@@ -8,6 +9,8 @@ namespace Installers
         public override void InstallBindings()
         {
             Container.Bind<Transition>().FromComponentInHierarchy().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<HealthDataProxy>().AsSingle().NonLazy();
         }
 
     }

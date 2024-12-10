@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay;
 using Hazards.AcidDrops;
 using Hazards.Targets;
 using UniRx;
@@ -15,19 +16,23 @@ namespace Hazards
 
         private readonly CompositeDisposable _compositeDisposable = new();
 
-        public AcidCloud(AcidCloudConfig acidCloudConfig, AcidCloudZone acidCloudZone, AcidDropsFactory acidDropsFactory, ShadowsFactory shadowsFactory)
+        public AcidCloud(AcidCloudConfig acidCloudConfig, AcidCloudZone acidCloudZone, AcidDropsFactory acidDropsFactory, ShadowsFactory shadowsFactory,
+                         Countdown countdown)
         {
             _acidCloudZone = acidCloudZone;
             _acidCloudConfig = acidCloudConfig;
             _acidDropsFactory = acidDropsFactory;
             _shadowsFactory = shadowsFactory;
 
-            Observable
-                .Interval(TimeSpan.FromSeconds(acidCloudConfig.RaindropsDelay))
-                .Subscribe(delegate
-                {
-                    CreteDrop();
-                }).AddTo(_compositeDisposable);
+            countdown.CountdownEnded.Subscribe(delegate
+            {
+                Observable
+                    .Interval(TimeSpan.FromSeconds(acidCloudConfig.RaindropsDelay))
+                    .Subscribe(delegate
+                    {
+                        CreteDrop();
+                    }).AddTo(_compositeDisposable);
+            });
         }
 
         private void CreteDrop()
