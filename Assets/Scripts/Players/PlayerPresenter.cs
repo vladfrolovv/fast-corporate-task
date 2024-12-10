@@ -98,6 +98,7 @@ namespace Players
             }
             else if (collider.TryGetComponent(out Puddle _))
             {
+                if (_acidBootsState.IsActive.Value) { return; }
                 _isInsidePuddle = true;
 
                 TryToHit();
