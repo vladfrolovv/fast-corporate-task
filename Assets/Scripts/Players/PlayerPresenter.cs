@@ -30,10 +30,9 @@ namespace Players
         private readonly AcidBootsState _acidBootsState;
         private readonly ShieldState _shieldState;
 
+        private IDisposable _puddleDamageDisposable;
+
         private Vector3 _movementVector = Vector3.zero;
-
-        private IDisposable _puddleMovementDisposable;
-
         private bool _isInsidePuddle;
 
         public PlayerPresenter(PlayerView playerView, PlayerConfig playerConfig, BaseInputProvider baseInputProvider,
@@ -90,19 +89,20 @@ namespace Players
             {
                 if (_shieldState.IsActive.Value) { return; }
 
-                AcidParticles acidParticles = _acidParticlesFactory.Create(new AcidParticlesInfo(ParticlesType.Blood));
-                acidParticles.transform.position = acidDrop.transform.position;
-
                 acidDrop.OnHit();
+
+                CreateBloodParticleOn(acidDrop.transform.position);
                 TryToHit();
             }
-            else if (collider.TryGetComponent(out Puddle _))
+            else if (collider.TryGetComponent(out Puddle puddle))
             {
                 if (_acidBootsState.IsActive.Value) { return; }
                 _isInsidePuddle = true;
 
+                PuddleDamageHandler();
+
+                CreateBloodParticleOn(_playerView.transform.position);
                 TryToHit();
-                PuddleMovementHandler();
             }
         }
 
@@ -111,16 +111,17 @@ namespace Players
             if (collider.TryGetComponent(out Puddle _))
             {
                 _isInsidePuddle = false;
-                _puddleMovementDisposable?.Dispose();
+                _puddleDamageDisposable?.Dispose();
             }
         }
 
-        private void PuddleMovementHandler()
+        private void PuddleDamageHandler()
         {
-            _puddleMovementDisposable = Observable
+            _puddleDamageDisposable = Observable
                 .Interval(TimeSpan.FromSeconds(_puddlesConfig.DamageTick))
                 .Subscribe(delegate
                 {
+                    CreateBloodParticleOn(_playerView.transform.position);
                     TryToHit();
                 });
         }
@@ -133,11 +134,17 @@ namespace Players
 
         private void LooseConditionCheck()
         {
-            if (_healthDataProxy.Health.Value <= 0)
-            {
-                _endScreen.Show();
-                _compositeDisposable?.Dispose();
-            }
+            if (_healthDataProxy.Health.Value > 0) return;
+
+            _endScreen.Show();
+            _compositeDisposable?.Dispose();
+            _playerAnimationController.SetDeathState();
+        }
+
+        private void CreateBloodParticleOn(Vector3 position)
+        {
+            AcidParticles acidParticles = _acidParticlesFactory.Create(new AcidParticlesInfo(ParticlesType.Blood));
+            acidParticles.transform.position = position;
         }
 
         public void Dispose()
