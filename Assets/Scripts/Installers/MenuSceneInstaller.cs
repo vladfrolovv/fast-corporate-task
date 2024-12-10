@@ -6,16 +6,14 @@ namespace Installers
     public class MenuSceneInstaller : MonoInstaller
     {
 
-        [SerializeField] private UnityEngine.Camera _mainCamera;
-        [SerializeField] private Canvas _mainCanvas;
+        [SerializeField] private DnDColorPanelItem _dnDColorPanelItemPrefab;
 
         public override void InstallBindings()
         {
-            Container.Bind<ColorsPanelParent>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesAndSelfTo<ColorsPanel>().AsSingle().NonLazy();
+            Container.Bind<ColorsPanelParent>().FromComponentInHierarchy().AsSingle();
 
-            Container.Bind<UnityEngine.Camera>().FromInstance(_mainCamera).AsSingle();
-            Container.Bind<Canvas>().FromInstance(_mainCanvas).AsSingle();
+            Container.Bind<DnDColorPanelItem>().FromComponentInNewPrefab(_dnDColorPanelItemPrefab).AsSingle();
         }
 
     }

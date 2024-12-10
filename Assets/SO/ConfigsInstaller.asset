@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerConfig: {fileID: 11400000, guid: 9792d76ac4b910f42ace3ac243461789, type: 2}
   _acidCloudConfig: {fileID: 11400000, guid: 6971f2d3d4fb64c45bec927839c20101, type: 2}
+  _colorsConfig: {fileID: 11400000, guid: 1fe2c20a9ca772a419b7d3292ad65f05, type: 2}
