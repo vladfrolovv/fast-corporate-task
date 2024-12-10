@@ -23,7 +23,7 @@ namespace Hazards.Puddles
             Observable.Timer(TimeSpan.FromSeconds(info.TimeToLive)).Subscribe(delegate
             {
                 DisappearAnimation();
-            });
+            }).AddTo(this);
         }
 
         private void AppearAnimation()

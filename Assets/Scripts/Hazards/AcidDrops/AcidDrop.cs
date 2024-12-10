@@ -33,7 +33,7 @@ namespace Hazards.AcidDrops
                 {
                     float verticalPull = GlobalDataProxy.GRAVITY * Time.deltaTime * _info.SpeedMultiplier;
                     transform.position += Vector3.down * verticalPull;
-                });
+                }).AddTo(this);
         }
 
         public void OnHit()

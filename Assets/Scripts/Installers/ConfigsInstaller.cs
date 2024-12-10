@@ -1,4 +1,6 @@
-﻿using Hazards;
+﻿using System;
+using Bonuses;
+using Hazards;
 using Menu.ColorPicker;
 using Players;
 using UnityEngine;
@@ -13,6 +15,7 @@ namespace Installers
         [SerializeField] private AcidCloudConfig _acidCloudConfig;
         [SerializeField] private ColorsConfig _colorsConfig;
         [SerializeField] private PuddlesConfig _puddlesConfig;
+        [SerializeField] private BonusesConfig _bonusesConfig;
 
         public override void InstallBindings()
         {
@@ -20,6 +23,7 @@ namespace Installers
             Container.BindInstance(_acidCloudConfig);
             Container.BindInstance(_colorsConfig);
             Container.BindInstance(_puddlesConfig);
+            Container.BindInstance(_bonusesConfig);
         }
         
     }

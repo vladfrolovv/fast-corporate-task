@@ -24,7 +24,7 @@ namespace Hazards.Particles
             Observable.Timer(TimeSpan.FromSeconds(1f)).Subscribe(delegate
             {
                 _pool?.Despawn(this);
-            });
+            }).AddTo(this);
         }
 
         public void OnDespawned()

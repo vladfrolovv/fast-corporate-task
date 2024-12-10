@@ -1,4 +1,6 @@
-﻿using Gameplay;
+﻿using Bonuses.AcidBoots;
+using Bonuses.Shield;
+using Gameplay;
 using Hazards;
 using Hazards.AcidDrops;
 using Hazards.Particles;
@@ -30,6 +32,13 @@ namespace Installers
             Container.Bind<Countdown>().FromComponentInHierarchy().AsSingle();
 
             Container.Bind<BaseInputProvider>().FromComponentInHierarchy().AsSingle();
+
+            Container.Bind<EndScreen>().FromComponentInHierarchy().AsSingle();
+
+            Container.Bind<GameManager>().FromComponentInHierarchy().AsSingle();
+
+            Container.Bind<AcidBootsState>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<ShieldState>().FromComponentInHierarchy().AsSingle();
 
             InstallPrefabs();
         }

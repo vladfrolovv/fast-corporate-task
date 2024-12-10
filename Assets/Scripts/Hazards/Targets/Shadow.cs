@@ -24,7 +24,7 @@ namespace Hazards.Targets
             _fixedUpdateDisposable = Observable
                 .EveryUpdate()
                 .Select(_ => _info.AcidDrop.transform.position)
-                .Subscribe(UpdateShadow);
+                .Subscribe(UpdateShadow).AddTo(this);
         }
         
         private void UpdateShadow(Vector3 fallingPosition)
