@@ -7,7 +7,7 @@
 
         public const float GRAVITY = 9.81f;
 
-        public const float BASE_HEALTH = 5f;
+        public const float BASE_HEALTH = 50f;
 
     }
 }

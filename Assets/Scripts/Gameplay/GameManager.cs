@@ -11,7 +11,7 @@ namespace Gameplay
 
         private DateTime _startTime;
 
-        public float TimeSinceStart => (float) (DateTime.Now - _startTime).TotalSeconds;
+        public TimeSpan TimeSinceStart => DateTime.Now - _startTime;
 
         [Inject]
         public void Construct(Countdown countdown)

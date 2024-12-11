@@ -123,7 +123,7 @@ namespace Players
                 {
                     CreateBloodParticleOn(_playerView.transform.position);
                     TryToHit();
-                });
+                }).AddTo(_compositeDisposable);
         }
 
         private void TryToHit()

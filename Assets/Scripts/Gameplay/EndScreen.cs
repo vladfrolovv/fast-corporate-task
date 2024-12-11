@@ -37,7 +37,7 @@ namespace Gameplay
             _rootCanvasGroup.DOFade(0f, .32f);
             _endScreenCanvasGroup.DOFade(1f, .32f);
 
-            _timeSurvivedText.text = $"Time survived: {_gameManager.TimeSinceStart:F2}";
+            _timeSurvivedText.text = $"Time survived: {_gameManager.TimeSinceStart:mm\\:ss}";
         }
 
         protected void Awake()
